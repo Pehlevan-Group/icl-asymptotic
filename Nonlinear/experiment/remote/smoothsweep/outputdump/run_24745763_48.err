@@ -1,0 +1,247 @@
+mkdir: cannot create directory ‘resultsdump/diverse1’: File exists
+mkdir: cannot create directory ‘resultsdump/diverse1/pickles’: File exists
+2024-03-24 02:34:35.781903: W external/tsl/tsl/framework/bfc_allocator.cc:485] Allocator (GPU_0_bfc) ran out of memory trying to allocate 20.45GiB (rounded to 21961937920)requested by op 
+2024-03-24 02:34:35.782297: W external/tsl/tsl/framework/bfc_allocator.cc:497] **__________________________________________________________________________________________________
+2024-03-24 02:34:35.782678: E external/xla/xla/pjrt/pjrt_stream_executor_client.cc:2732] Execution of replica 0 failed: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 21961937800 bytes.
+BufferAssignment OOM Debugging.
+BufferAssignment stats:
+             parameter allocation:  160.31MiB
+              constant allocation:        12B
+        maybe_live_out allocation:    8.39MiB
+     preallocated temp allocation:   20.45GiB
+  preallocated temp fragmentation:     2.0KiB (0.00%)
+                 total allocation:   20.62GiB
+              total fragmentation:    8.40MiB (0.04%)
+Peak buffers:
+	Buffer 1:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/LayerNorm_0/reduce_sum[axes=(2,)]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=183
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 2:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/transpose(jvp(Transformer))/TransformerBlock_1/Dense_0/reduce_sum[axes=(0, 1)]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=187
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 3:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/add" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=192 deduplicated_name="fusion.109"
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 4:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/LayerNorm_0/add" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=183 deduplicated_name="fusion.110"
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 5:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/LayerNorm_1/add" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=193 deduplicated_name="fusion.110"
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 6:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/SingleHeadSelfAttention_0/value/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=106
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 7:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/SingleHeadSelfAttention_0/key/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=105
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 8:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/SingleHeadSelfAttention_0/query/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=104
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 9:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/add" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=192 deduplicated_name="fusion.109"
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 10:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/SingleHeadSelfAttention_0/value/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=106
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 11:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/SingleHeadSelfAttention_0/key/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=105
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 12:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/SingleHeadSelfAttention_0/query/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=104
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 13:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/Dense_0/add" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=280
+		XLA Label: fusion
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 14:
+		Size: 151.77MiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/SingleHeadSelfAttention_0/exp" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=116 deduplicated_name="fusion.119"
+		XLA Label: fusion
+		Shape: f32[41400,31,31]
+		==========================
+
+	Buffer 15:
+		Size: 151.77MiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/SingleHeadSelfAttention_0/exp" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=116 deduplicated_name="fusion.119"
+		XLA Label: fusion
+		Shape: f32[41400,31,31]
+		==========================
+
+
+Traceback (most recent call last):
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/final.py", line 35, in <module>
+    state, hist = train(config, data_iter=iter(trainobject), loss='mse', test_every=1000, train_iters=500000, optim=optax.adamw,lr=1e-4)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../traintheory.py", line 177, in train
+    state = train_step(state, mybatch, loss=loss, l1_weight=l1_weight, l2_weight=l2_weight)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jaxlib.xla_extension.XlaRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 21961937800 bytes.
+BufferAssignment OOM Debugging.
+BufferAssignment stats:
+             parameter allocation:  160.31MiB
+              constant allocation:        12B
+        maybe_live_out allocation:    8.39MiB
+     preallocated temp allocation:   20.45GiB
+  preallocated temp fragmentation:     2.0KiB (0.00%)
+                 total allocation:   20.62GiB
+              total fragmentation:    8.40MiB (0.04%)
+Peak buffers:
+	Buffer 1:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/LayerNorm_0/reduce_sum[axes=(2,)]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=183
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 2:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/transpose(jvp(Transformer))/TransformerBlock_1/Dense_0/reduce_sum[axes=(0, 1)]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=187
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 3:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/add" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=192 deduplicated_name="fusion.109"
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 4:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/LayerNorm_0/add" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=183 deduplicated_name="fusion.110"
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 5:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/LayerNorm_1/add" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=193 deduplicated_name="fusion.110"
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 6:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/SingleHeadSelfAttention_0/value/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=106
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 7:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/SingleHeadSelfAttention_0/key/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=105
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 8:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/SingleHeadSelfAttention_0/query/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=104
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 9:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/add" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=192 deduplicated_name="fusion.109"
+		XLA Label: fusion
+		Shape: f32[41400,31,300]
+		==========================
+
+	Buffer 10:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/SingleHeadSelfAttention_0/value/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=106
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 11:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/SingleHeadSelfAttention_0/key/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=105
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 12:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/SingleHeadSelfAttention_0/query/dot_general[dimension_numbers=(((2,), (0,)), ((), ())) precision=None preferred_element_type=None]" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=104
+		XLA Label: custom-call
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 13:
+		Size: 1.43GiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/Dense_0/add" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=280
+		XLA Label: fusion
+		Shape: f32[1283400,300]
+		==========================
+
+	Buffer 14:
+		Size: 151.77MiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_1/SingleHeadSelfAttention_0/exp" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=116 deduplicated_name="fusion.119"
+		XLA Label: fusion
+		Shape: f32[41400,31,31]
+		==========================
+
+	Buffer 15:
+		Size: 151.77MiB
+		Operator: op_name="jit(train_step)/jit(main)/jvp(Transformer)/TransformerBlock_0/SingleHeadSelfAttention_0/exp" source_file="/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../model/transformer.py" source_line=116 deduplicated_name="fusion.119"
+		XLA Label: fusion
+		Shape: f32[41400,31,31]
+		==========================
+
+
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.

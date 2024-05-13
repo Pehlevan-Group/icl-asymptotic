@@ -1,0 +1,18 @@
+mkdir: cannot create directory ‘resultsdump/test’: File exists
+Traceback (most recent call last):
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/contextlength/memory.py", line 48, in <module>
+    state = compute_metrics(state, samp, loss='ce') 
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/contextlength/../../../trainmini.py", line 131, in compute_metrics
+    loss = loss_func(logits, labels).mean()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home05/mletey/.conda/envs/try4/lib/python3.12/site-packages/optax/losses/_classification.py", line 130, in softmax_cross_entropy_with_integer_labels
+    chex.assert_type([labels], int)
+  File "/n/home05/mletey/.conda/envs/try4/lib/python3.12/site-packages/chex/_src/asserts_internal.py", line 278, in _chex_assert_fn
+    host_assertion_fn(
+  ^^^^^^^^^^^^^^^^^^^^
+  File "/n/home05/mletey/.conda/envs/try4/lib/python3.12/site-packages/chex/_src/asserts_internal.py", line 196, in _assert_on_host
+    raise exception_type(error_msg)
+AssertionError: [Chex] Assertion assert_type failed: Error in type compatibility check: input 0 has type float32 but expected <class 'int'>.
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/tau.py", line 33, in <module>
+    trainobject = FiniteSampler(n_points = N+1, n_dims= d, eta_scale = sigma, w_scale = psi, batch_size = P, diversity = myK, seed=None);
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/../../../task/regression.py", line 111, in __init__
+    self.E = self.rng.normal(loc=0, scale = self.w_scale, size=(self.n_dims, self.diversity)) 
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "numpy/random/_generator.pyx", line 1220, in numpy.random._generator.Generator.normal
+  File "_common.pyx", line 636, in numpy.random._common.cont
+TypeError: 'float' object cannot be interpreted as an integer

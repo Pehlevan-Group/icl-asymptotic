@@ -1,0 +1,13 @@
+mkdir: cannot create directory ‘resultsdump/test’: File exists
+Traceback (most recent call last):
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/contextlength/memory.py", line 48, in <module>
+    state = compute_metrics(state, samp, loss=loss_func) 
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/contextlength/../../../trainmini.py", line 130, in compute_metrics
+    loss_func=parse_loss_name(loss)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/contextlength/../../../trainmini.py", line 73, in parse_loss_name
+    raise ValueError(f'unrecognized loss name: {loss}')
+ValueError: unrecognized loss name: <function squared_error at 0x151e38c35d00>
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
