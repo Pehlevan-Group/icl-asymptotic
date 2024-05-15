@@ -15,7 +15,7 @@ from tqdm import tqdm
 
 import sys
 sys.path.append('../')
-from train import train
+from traintheory import train
 
 def new_seed():
     return np.random.randint(0, np.iinfo(np.int32).max)

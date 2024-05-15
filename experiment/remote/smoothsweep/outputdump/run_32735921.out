@@ -1,0 +1,3 @@
+TB is not running on a GPU.
+ITER 1000:  loss=3.0564   l1_loss=0.0000  acc=0.0000
+tau =  2  and error =  3.3483522

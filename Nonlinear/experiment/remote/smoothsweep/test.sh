@@ -1,13 +1,13 @@
 #!/bin/bash
 #
-#SBATCH --job-name=test
+#SBATCH --job-name=smallsingle
 #SBATCH -c 10
-#SBATCH -t 3-00:00:00
+#SBATCH -t 1-00:00:00
 #SBATCH -p gpu
 #SBATCH --gres=gpu:1
 #SBATCH --mem=32000
-#SBATCH -o /n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/outputdump/run_%A.out
-#SBATCH -e /n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/smoothsweep/outputdump/run_%A.err
+#SBATCH -o /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/experiment/remote/smoothsweep/outputdump/run_%A.out
+#SBATCH -e /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/experiment/remote/smoothsweep/outputdump/run_%A.err
 #SBATCH --mail-type=END
 #SBATCH --mail-user=maryletey@fas.harvard.edu
 
@@ -21,4 +21,4 @@ newdir="$parentdir/${SLURM_JOB_NAME}"
 pkldir="$parentdir/${SLURM_JOB_NAME}/pickles"
 mkdir "$newdir"
 mkdir "$pkldir"
-python final.py $newdir 
+python final.py $newdir 1 1

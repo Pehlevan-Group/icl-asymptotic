@@ -13,7 +13,7 @@ for i in range(30):
         file_contents = file.read()
     vals.append(float(file_contents))
 
-plt.plot(range(1,31), vals,label="test error")
+plt.plot(range(1,31), vals,'.-',label="test error")
 plt.xlabel("tau")
 plt.title(f'2 Layers, 10*d hidden dim, d = {myd}')
 plt.savefig(f'./{myjob}/errorplot-{myd}.png')

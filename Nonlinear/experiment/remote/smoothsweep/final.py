@@ -1,27 +1,20 @@
-import jax
-from flax.serialization import from_state_dict
-import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
 import optax
 import pickle
 import sys
 sys.path.append('../../')
 sys.path.append('../../../')
 from common import *
-from traintheory import train, create_train_state
-from model.knn import KnnConfig
-from model.mlp import MlpConfig
-from model.poly import PolyConfig
+from traintheory import train
 from model.transformer import TransformerConfig
-from task.regression import LinearRegressionCorrect, FiniteSampler
+from task.regression import LinearRegressionCorrect
 
-d=30;
-tvals = np.linspace(2,50,25);
+d=20;
+tvals = range(1,81);
 alpha = 1; N = int(alpha*d);
 h = 10*d;
 
-sigma = 0.1;
+sigma = 0.25;
 psi = 1;
 
 myname = sys.argv[1] # grab value of $mydir to add results
@@ -43,6 +36,8 @@ for _ in range(numsamples):
   logits = state.apply_fn({'params': state.params}, xs); # runs xs through transformer and makes predictions
   avgerr = avgerr + loss_func(logits, labels).mean()
 avgerr = avgerr/numsamples;
+
+print("tau = ", tvals[tauind], " and error = ", avgerr)
 
 file_path = f'./{myname}/error-{tauind}.txt'
 with open(file_path, 'a') as file:

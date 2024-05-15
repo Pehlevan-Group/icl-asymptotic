@@ -1,14 +1,14 @@
 #!/bin/bash
-# 3l20_arrays.sbatch
+# 3L15d_arrays.sbatch
 # 
-#SBATCH --job-name=3l20
+#SBATCH --job-name=3L15d
 #SBATCH -c 10
 #SBATCH -t 3-00:00:00
 #SBATCH -p seas_gpu
 #SBATCH --gres=gpu:1
 #SBATCH --mem=32000
-#SBATCH -o /n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/taustar/outputdump/run_%A_%a.out
-#SBATCH -e /n/holyscratch01/pehlevan_lab/Lab/mletey/ICLexperiments/experiment/remote/taustar/outputdump/run_%A_%a.err
+#SBATCH -o /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/taustar/outputdump/run_%A_%a.out
+#SBATCH -e /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/taustar/outputdump/run_%A_%a.err
 #SBATCH --array=1-40%20
 #SBATCH --mail-type=END
 #SBATCH --mail-user=maryletey@fas.harvard.edu
@@ -25,4 +25,4 @@ errdir="$parentdir/${SLURM_JOB_NAME}_${SLURM_ARRAY_JOB_ID}/errors"
 mkdir "$newdir"
 mkdir "$pkldir"
 mkdir "$errdir"
-python run.py $newdir 20 $SLURM_ARRAY_TASK_ID
+python run.py $newdir 15 $SLURM_ARRAY_TASK_ID
