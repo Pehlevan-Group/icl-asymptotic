@@ -1,0 +1,21 @@
+100
+20
+0
+iteration  0  icl vals  [0.9967433543503659]
+iteration  0  idg vals  [0.026931983643734503]
+0
+iteration  0  icl vals  [0.6950411711934377]
+iteration  0  idg vals  [0.04576245790057554]
+0
+iteration  0  icl vals  [0.23889015925850177]
+iteration  0  idg vals  [0.06813132449964909]
+0
+iteration  0  icl vals  [0.08021127341289236]
+iteration  0  idg vals  [0.0777584560355904]
+0
+iteration  0  icl vals  [0.07850565250843222]
+iteration  0  idg vals  [0.07803466364965983]
+iclmean [0.99674335 0.69504117 0.23889016 0.08021127 0.07850565]
+iclstd [0. 0. 0. 0. 0.]
+idgmean [0.02693198 0.04576246 0.06813132 0.07775846 0.07803466]
+idgstd [0. 0. 0. 0. 0.]

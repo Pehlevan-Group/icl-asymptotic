@@ -3,13 +3,10 @@ import sys
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 import numpy as np
-import seaborn as sns
-import optax
 
 sys.path.append('../../../')
 sys.path.append('../../../../')
 from common import *
-from train import train, create_train_state
 
 mydir = sys.argv[1]
 myd = int(sys.argv[2])
@@ -29,7 +26,7 @@ for i in range(40):
 # overparam = [i for i in range(len(trainvals)) if trainvals[i] < cutoff]
 # print("Tau Inflection at tau = ",overparam[-1])
 
-taus = range(1,41)
+taus = range(11,51)
 
 # def growth(myarr):
 #     answ = []
@@ -66,8 +63,8 @@ threshold = 0.9995; myval = threshold*sums[-1]
 tind = np.where(sums > myval)[0][0]
 tstar = taus[tind]
 print("tstar",tstar)
-plt.scatter(taus,myarr,c='black',label='Final Training Error')
+plt.scatter(taus,trainvals,c='black',label='Final Training Error')
 #plt.axvline(x=tstar,c='red',label=f'tau* = {tstar} (cummulative sum w threshold {threshold})')
 plt.legend()
 plt.title(f'Train Error Transition - 3 Layers, 100 hidden dim, d = {myd}')
-plt.savefig(f'../plots/3L-transition-early-{myd}.png')
+plt.savefig(f'../plots/2L-transition-early-{myd}.png')

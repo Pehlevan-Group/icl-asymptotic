@@ -1,0 +1,33 @@
+TB is not running on a GPU.
+dumbfuck
+create_train_state is not running on a GPU.
+ITER 1000:  loss=0.9439   l1_loss=0.0000  acc=0.0000
+ITER 2000:  loss=1.1149   l1_loss=0.0000  acc=0.0000
+ITER 3000:  loss=1.2490   l1_loss=0.0000  acc=0.0000
+ITER 4000:  loss=1.3803   l1_loss=0.0000  acc=0.0000
+ITER 5000:  loss=1.5014   l1_loss=0.0000  acc=0.0000
+ITER 6000:  loss=1.5649   l1_loss=0.0000  acc=0.0000
+ITER 7000:  loss=1.6329   l1_loss=0.0000  acc=0.0000
+ITER 8000:  loss=1.6875   l1_loss=0.0000  acc=0.0000
+ITER 9000:  loss=1.7291   l1_loss=0.0000  acc=0.0000
+ITER 10000:  loss=1.7886   l1_loss=0.0000  acc=0.0000
+ITER 11000:  loss=1.8290   l1_loss=0.0000  acc=0.0000
+ITER 12000:  loss=1.8699   l1_loss=0.0000  acc=0.0000
+ITER 13000:  loss=1.8876   l1_loss=0.0000  acc=0.0000
+ITER 14000:  loss=1.9551   l1_loss=0.0000  acc=0.0000
+ITER 15000:  loss=1.9663   l1_loss=0.0000  acc=0.0000
+ITER 16000:  loss=2.0034   l1_loss=0.0000  acc=0.0000
+ITER 17000:  loss=2.0536   l1_loss=0.0000  acc=0.0000
+ITER 18000:  loss=2.1043   l1_loss=0.0000  acc=0.0000
+ITER 19000:  loss=2.1292   l1_loss=0.0000  acc=0.0000
+ITER 20000:  loss=2.1217   l1_loss=0.0000  acc=0.0000
+ITER 21000:  loss=2.1717   l1_loss=0.0000  acc=0.0000
+ITER 22000:  loss=2.2062   l1_loss=0.0000  acc=0.0000
+ITER 23000:  loss=2.2226   l1_loss=0.0000  acc=0.0000
+ITER 24000:  loss=2.2506   l1_loss=0.0000  acc=0.0000
+ITER 25000:  loss=2.2929   l1_loss=0.0000  acc=0.0000
+ITER 26000:  loss=2.2757   l1_loss=0.0000  acc=0.0000
+ITER 27000:  loss=2.3350   l1_loss=0.0000  acc=0.0000
+ITER 28000:  loss=2.3405   l1_loss=0.0000  acc=0.0000
+ITER 29000:  loss=2.3437   l1_loss=0.0000  acc=0.0000
+ITER 30000:  loss=2.3552   l1_loss=0.0000  acc=0.0000

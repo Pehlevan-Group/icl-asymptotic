@@ -26,7 +26,7 @@ P = int(tvals[tauind]*(d**2));
 h = 10*d;
 
 trainobject = LinearRegressionCorrect(n_points = N+1, n_dims= d, eta_scale = sigma, w_scale = psi, batch_size = P, seed=None);
-config = TransformerConfig(pos_emb=False, n_hidden=h, n_layers=3)
+config = TransformerConfig(pos_emb=False, n_hidden=h, n_layers=2)
 
 state, hist = train(config, data_iter=iter(trainobject), batch_size=np.min([10000,P]), loss='mse', test_every=1000, train_iters=30000, optim=optax.adamw,lr=1e-4)
 
