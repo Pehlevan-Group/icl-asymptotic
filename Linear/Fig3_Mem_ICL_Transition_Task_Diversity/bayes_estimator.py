@@ -4,13 +4,13 @@ def S_W(c, alpha):
     return 2/(c+alpha-1 + np.sqrt((c+alpha-1)**2 + 4*c))
 
 def bayes_estimator(d,Ks,N,sigma_beta,sigma_noise,nsim):
-    IDG = np.zeros(2,len(Ks));
-    ICL = np.zeros(2,len(Ks));
+    IDG = np.zeros((2,len(Ks)));
+    ICL = np.zeros((2,len(Ks)));
 
-    for idx, K in enumerate(K):
+    for idx, K in enumerate(Ks):
         B = np.random.randn(d, K)
         for i in range(nsim):
-            temp_IDG = np.zeros(2,nsim); temp_ICL = np.zeros(2,nsim);
+            temp_IDG = np.zeros((2,nsim)); temp_ICL = np.zeros((2,nsim));
             X = np.random.randn(d, N) / np.sqrt(d)
             beta_IDG = B[:, np.random.randint(K)].reshape(d, 1); beta_IDG = np.sqrt(d)*beta_IDG/np.linalg.norm(beta_IDG);
             beta_ICL = np.random.randn(d, 1) * sigma_beta
