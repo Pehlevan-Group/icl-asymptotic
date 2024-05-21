@@ -1,18 +1,17 @@
 #!/bin/bash
-# NIPS20d2L.sbatch
+# NIPS5d2L.sbatch
 # 
-#SBATCH --job-name=NIPS20d2L
+#SBATCH --job-name=NIPS5d2L
 #SBATCH -c 10
 #SBATCH -t 3-00:00:00
-#SBATCH -p kempner
+#SBATCH -p seas_gpu
 #SBATCH --gres=gpu:1
 #SBATCH --mem=32000
-#SBATCH -o /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/experiment/remote/smoothsweep/outputdump/run_%A_%a.out
-#SBATCH -e /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/experiment/remote/smoothsweep/outputdump/run_%A_%a.err
-#SBATCH --array=11-400%12
+#SBATCH -o /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/experiment/remote/smoothsweep/outputdump/NIPS5d2L_%A_%a.out
+#SBATCH -e /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/experiment/remote/smoothsweep/outputdump/NIPS5d2L_%A_%a.err
+#SBATCH --array=1-400%25
 #SBATCH --mail-type=END
 #SBATCH --mail-user=maryletey@fas.harvard.edu
-#SBATCH --account=kempner_pehlevan_lab
 
 module load python/3.10.12-fasrc01
 module load cuda/12.2.0-fasrc01 cudnn/8.9.2.26_cuda12-fasrc01

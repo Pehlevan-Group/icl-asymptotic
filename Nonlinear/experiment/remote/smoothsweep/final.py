@@ -9,7 +9,7 @@ from traintheory import train
 from model.transformer import TransformerConfig
 from task.regression import LinearRegressionCorrect
 
-d=20;
+d=5;
 tvals = range(1,81);
 alpha = 1; N = int(alpha*d);
 h = 10*d;
