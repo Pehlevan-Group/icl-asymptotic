@@ -100,6 +100,7 @@ class SingleHeadSelfAttention(nn.Module):
             features=self.config.n_hidden,
             use_bias=use_bias)
         
+        print("inside singleheadselfatt: inputs are dimension ", inputs.shape)
         self.sow('intermediates', 'inputs', inputs)
         query = dense(name='query')(inputs)
         key = dense(name='key')(inputs)
@@ -120,6 +121,7 @@ class SingleHeadSelfAttention(nn.Module):
             # value = jax.nn.softmax(value)
 
         attn_out = attn_weights @ value
+        print("shape of attention is ",attn_out.shape)
         return attn_out
 
 
@@ -185,6 +187,7 @@ class TransformerBlock(nn.Module):
         assert inputs.ndim == 3
         x = SingleHeadSelfAttention(self.config)(inputs, decoder_mask, idxs=idxs)
         #x = nn.MultiHeadDotProductAttention(num_heads=self.config.n_heads,qkv_features=self.config.n_hidden)(inputs_q=inputs, inputs_kv=inputs, mask=decoder_mask)
+        print("residual connection is adding inputs of shape ",inputs.shape," to x of shape ",x.shape)
         x = x + inputs
         pre_mlp_x = nn.LayerNorm()(x)
 
@@ -292,6 +295,7 @@ class Transformer(nn.Module):
             # decoder_mask = nn.combine_masks(
             #     decoder_mask,
             #     nn.make_causal_mask(inputs))
+            print("decoder mask depends on ",inputs.shape[:2])
             decoder_mask = nn.make_causal_mask(jnp.zeros(inputs.shape[:2]))
             
             for _ in range(config.n_layers):

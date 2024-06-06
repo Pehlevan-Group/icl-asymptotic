@@ -2,13 +2,11 @@ import pickle
 import sys
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
-import optax
+
 
 sys.path.append('../../../')
 sys.path.append('../../../../')
 from common import *
-from train import train, create_train_state
 
 mydir = sys.argv[1]
 myfile = sys.argv[2]

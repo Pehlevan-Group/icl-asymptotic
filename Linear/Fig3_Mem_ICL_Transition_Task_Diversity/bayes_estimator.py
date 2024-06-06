@@ -8,11 +8,12 @@ def bayes_estimator(d,Ks,N,sigma_beta,sigma_noise,nsim):
     ICL = np.zeros((2,len(Ks)));
 
     for idx, K in enumerate(Ks):
-        B = np.random.randn(d, K)
+        K = int(K);
+        B = np.random.randn(d, K) * sigma_beta
         for i in range(nsim):
             temp_IDG = np.zeros((2,nsim)); temp_ICL = np.zeros((2,nsim));
             X = np.random.randn(d, N) / np.sqrt(d)
-            beta_IDG = B[:, np.random.randint(K)].reshape(d, 1); beta_IDG = np.sqrt(d)*beta_IDG/np.linalg.norm(beta_IDG);
+            beta_IDG = B[:, np.random.randint(K)].reshape(d, 1); #beta_IDG = np.sqrt(d)*beta_IDG/np.linalg.norm(beta_IDG);
             beta_ICL = np.random.randn(d, 1) * sigma_beta
 
             y_IDG = X.T @ beta_IDG + np.random.randn(N, 1) * sigma_noise
@@ -33,5 +34,6 @@ def bayes_estimator(d,Ks,N,sigma_beta,sigma_noise,nsim):
             temp_IDG[0,i] = ((xv.T @ w_ridge_IDG).item() - yv)**2; temp_IDG[1,i] = ((xv.T @ w_dmmse_IDG).item() - yv)**2; 
         
         ICL[0,idx] = np.mean(temp_ICL[0,:]); ICL[1,idx] = np.mean(temp_ICL[1,:]);
-        IDG[0,idx] = np.mean(temp_IDG[0,:]); IDG[1,idx] = np.mean(temp_IDG[1,:])
+        IDG[0,idx] = np.mean(temp_IDG[0,:]); IDG[1,idx] = np.mean(temp_IDG[1,:]);
+    return ICL, IDG
 

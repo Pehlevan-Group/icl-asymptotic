@@ -1,4 +1,0 @@
-mkdir: cannot create directory ‘resultsdump/fig7_25547489’: File exists
-mkdir: cannot create directory ‘resultsdump/fig7_25547489/errors’: File exists
-mkdir: cannot create directory ‘resultsdump/fig7_25547489/pickles’: File exists
-slurmstepd: error: *** JOB 25547499 ON holygpu7c1313 CANCELLED AT 2024-03-31T22:01:53 DUE TO TIME LIMIT ***

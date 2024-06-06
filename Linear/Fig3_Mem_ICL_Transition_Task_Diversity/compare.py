@@ -3,8 +3,8 @@ from bayes_estimator import *
 
 d=100
 alphas = [0.25,0.5,0.75,1,5,10,50];
-kappas = np.logspace(np.log10(0.1),np.log10(100),50); Ks = np.int64(kappas*d);
-
+kappas = np.logspace(np.log10(0.5),np.log10(100),50); Ks = np.int64(kappas*d);
+print(Ks)
 icl_ridge = np.zeros((len(alphas),len(kappas))); icl_dmmse = np.zeros((len(alphas),len(kappas)));
 idg_ridge = np.zeros((len(alphas),len(kappas))); idg_dmmse = np.zeros((len(alphas),len(kappas)));
 

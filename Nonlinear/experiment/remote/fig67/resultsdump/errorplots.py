@@ -5,7 +5,7 @@ import sys
 myjob = sys.argv[1]
 
 experimentdata = []
-for i in range(25):
+for i in range(3):
     filepath = f'./{myjob}/errors/error-{i}.txt'
     with open(filepath, 'r') as file:
         numbers = [float(line.strip()) for line in file if line.strip()]
