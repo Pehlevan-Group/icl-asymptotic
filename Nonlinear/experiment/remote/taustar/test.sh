@@ -1,15 +1,15 @@
 #!/bin/bash
-# 2L40d_arrays.sbatch
+# 1d60d_arrays.sbatch
 # 
-#SBATCH --job-name=2L40d
+#SBATCH --job-name=1L60d
 #SBATCH -c 10
 #SBATCH -t 3-00:00:00
 #SBATCH -p gpu
 #SBATCH --gres=gpu:1
 #SBATCH --mem=32000
-#SBATCH -o /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/taustar/outputdump/run_%A_%a.out
-#SBATCH -e /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/taustar/outputdump/run_%A_%a.err
-#SBATCH --array=1-40%20
+#SBATCH -o /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/taustar/outputdump/1L60d_%A_%a.out
+#SBATCH -e /n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/taustar/outputdump/1L60d_%A_%a.err
+#SBATCH --array=1-16
 #SBATCH --mail-type=END
 #SBATCH --mail-user=maryletey@fas.harvard.edu
 
@@ -25,4 +25,4 @@ errdir="$parentdir/${SLURM_JOB_NAME}_${SLURM_ARRAY_JOB_ID}/errors"
 mkdir "$newdir"
 mkdir "$pkldir"
 mkdir "$errdir"
-python run.py $newdir 40 $SLURM_ARRAY_TASK_ID
+python run.py $newdir 60 $SLURM_ARRAY_TASK_ID

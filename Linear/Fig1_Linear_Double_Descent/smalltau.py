@@ -1,6 +1,6 @@
 import numpy as np
 import sys
-from helpers import *
+from common import *
 
 # Example parameters
 
@@ -8,9 +8,8 @@ d = sys.argv[1]
 alpha = sys.argv[2]
 
 d = int(d)
-alpha = int(alpha)
+alpha = float(alpha)
 l = int(alpha * d)  # Context length
-
 
 lambda_val = 0.00000001
 kappa = 0.5; k = np.int64(kappa * d)
@@ -41,9 +40,9 @@ for tau in tau_values:
     for i in range(n_MC):
         print("iteration ",i)
         x, y, w, B = draw_pretraining_data(n, d, l, k, rho)
-        H_Z = construct_H_Z(x, y, l, d)
+        H_Z = construct_H_NEW(x, y, l, d)
         y_l1 = y[:, l]
-        Gamma_star = compute_Gamma_star(n, d, H_Z, y_l1, lambda_val)
+        Gamma_star = (n, d, H_Z, y_l1, lambda_val)
         e_icl_g_values.append(gen_err_analytical_NEW(Gamma_star, alpha, np.zeros(d), np.eye(d), rho))
         print("iteration ",i, " icl vals ", e_icl_g_values)
         e_idg_g_values.append(gen_err_analytical_NEW(Gamma_star, alpha, np.mean(B,axis=0), (B.T @ B)/k, rho))

@@ -2,25 +2,37 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 
-myjob = sys.argv[1]
+#myjob = sys.argv[1]
 
-experimentdata = []
-for i in range(3):
-    filepath = f'./{myjob}/errors/error-{i}.txt'
-    with open(filepath, 'r') as file:
-        numbers = [float(line.strip()) for line in file if line.strip()]
-    experimentdata.append(numbers)
+myjobs = ['kap10a1_33950049','kap20a1_33950124']#'kap30a1_34134986']
+kappas  =  [ 0.1,  0.2,  0.3,  0.4,  0.6,  0.7,  1. ,  1.3,  1.7,  2.2,  2.8, 3.7,  4.8,  6.2,  8.1, 10.5, 13.6, 17.7, 22.9, 29.7, 38.5, 49.9]; 
+full = []
+for myjob in myjobs:
+    experimentdata = []
+    for i in range(len(kappas)):
+        filepath = f'./{myjob}/errors/error-{i}.txt'
+        with open(filepath, 'r') as file:
+            numbers = [float(line.strip()) for line in file if line.strip()]
+        experimentdata.append(numbers)
+    full.append(experimentdata)
 
-def printpython(arr):
-    print("[", end="")
-    for i in range(len(arr)):
-        if i < len(arr) - 1:
-            print(repr(arr[i]) + ",", end=" ")
-        else:
-            print(repr(arr[i]), end="")
-    print("]")
+plt.plot(kappas,[np.mean(full[0][i]) for i in range(len(kappas))],label=f'{myjobs[0]}')
+plt.plot(kappas,[np.mean(full[1][i]) for i in range(len(kappas))],label=f'{myjobs[1]}')
+plt.xscale('log')
+#plt.plot(kappas,[np.mean(full[2,i,:]) for i in range(len(kappas))],label=f'{myjobs[2]}')
+plt.legend()
+plt.savefig(f'd102030_a1.png')
 
-printpython(experimentdata)
+# def printpython(arr):
+#     print("[", end="")
+#     for i in range(len(arr)):
+#         if i < len(arr) - 1:
+#             print(repr(arr[i]) + ",", end=" ")
+#         else:
+#             print(repr(arr[i]), end="")
+#     print("]")
+
+#printpython(experimentdata)
 
 # d = 20;
 # tau=50;

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Linear/Fig1_Linear_Double_Descent/smalltau.py", line 3, in <module>
+    from helpers import *
+ModuleNotFoundError: No module named 'helpers'

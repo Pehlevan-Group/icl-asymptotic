@@ -9,8 +9,8 @@ def bayes_estimator(d,Ks,N,sigma_beta,sigma_noise,nsim):
 
     for idx, K in enumerate(Ks):
         K = int(K);
-        B = np.random.randn(d, K) * sigma_beta
         for i in range(nsim):
+            B = np.random.randn(d, K) * sigma_beta
             temp_IDG = np.zeros((2,nsim)); temp_ICL = np.zeros((2,nsim));
             X = np.random.randn(d, N) / np.sqrt(d)
             beta_IDG = B[:, np.random.randint(K)].reshape(d, 1); #beta_IDG = np.sqrt(d)*beta_IDG/np.linalg.norm(beta_IDG);
