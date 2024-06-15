@@ -16,15 +16,16 @@ myname = sys.argv[1] # grab value of $mydir to add results
 d = int(sys.argv[2])
 tauind = int(sys.argv[3]); # grab value of $SLURM_ARRAY_TASK_ID to index over taus 
 avgind = int(sys.argv[4]); # grab value of $SLURM_ARRAY_TASK_ID to index over experiment repeats 
-#2,2.5,3,5]);
-tvals = np.array([0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5]); P = int(tvals[tauind]*(d**2));
+#);
+tvals = np.array(list(np.linspace(0.1,3.1,31)) + list(np.linspace(3.5,6,6))); P = int(tvals[tauind]*(d**2));
+#np.array([0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,2,2.5,3,5]); 
 alpha = 1; N = int(alpha*d);
 h = d;
 
 trainobject = LinearRegressionCorrect(n_points = N+1, n_dims= d, eta_scale = sigma, w_scale = psi, batch_size = P, seed=None);
 config = TransformerConfig(pos_emb=False, n_hidden=h, n_layers=1, n_mlp_layers=0, pure_linear_self_att=False)
 print("start training")
-state, hist = train(config, data_iter=iter(trainobject), loss='mse', batch_size=int(0.1*P), test_every=1000, train_iters=40000, optim=optax.adamw,lr=1e-4)
+state, hist = train(config, data_iter=iter(trainobject), loss='mse', batch_size=int(0.1*P), test_every=1000, train_iters=20000, optim=optax.adamw,lr=1e-4)
 
 testobject = LinearRegressionCorrect(n_points = N+1, n_dims= d, eta_scale = sigma, w_scale = psi, batch_size = P, seed=None);
 avgerr = 0;

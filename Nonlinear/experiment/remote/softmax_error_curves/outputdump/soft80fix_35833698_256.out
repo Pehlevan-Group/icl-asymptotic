@@ -1,0 +1,45 @@
+TB is not running on a GPU.
+start training
+create_train_state is not running on a GPU.
+decoder mask depends on  (3328, 81)
+inside singleheadselfatt: inputs are dimension  (3328, 81, 80)
+shape of attention is  (3328, 81, 80)
+residual connection is adding inputs of shape  (3328, 81, 80)  to x of shape  (3328, 81, 80)
+decoder mask depends on  (3328, 81)
+inside singleheadselfatt: inputs are dimension  (3328, 81, 80)
+shape of attention is  (3328, 81, 80)
+residual connection is adding inputs of shape  (3328, 81, 80)  to x of shape  (3328, 81, 80)
+decoder mask depends on  (33280, 81)
+inside singleheadselfatt: inputs are dimension  (33280, 81, 80)
+shape of attention is  (33280, 81, 80)
+residual connection is adding inputs of shape  (33280, 81, 80)  to x of shape  (33280, 81, 80)
+decoder mask depends on  (3328, 81)
+inside singleheadselfatt: inputs are dimension  (3328, 81, 80)
+shape of attention is  (3328, 81, 80)
+residual connection is adding inputs of shape  (3328, 81, 80)  to x of shape  (3328, 81, 80)
+decoder mask depends on  (33280, 81)
+inside singleheadselfatt: inputs are dimension  (33280, 81, 80)
+shape of attention is  (33280, 81, 80)
+residual connection is adding inputs of shape  (33280, 81, 80)  to x of shape  (33280, 81, 80)
+ITER 1000:  loss=1.0262   l1_loss=0.0000  acc=0.0000
+ITER 2000:  loss=1.0546   l1_loss=0.0000  acc=0.0000
+ITER 3000:  loss=1.0840   l1_loss=0.0000  acc=0.0000
+ITER 4000:  loss=1.1066   l1_loss=0.0000  acc=0.0000
+ITER 5000:  loss=1.1139   l1_loss=0.0000  acc=0.0000
+ITER 6000:  loss=1.1322   l1_loss=0.0000  acc=0.0000
+ITER 7000:  loss=1.1459   l1_loss=0.0000  acc=0.0000
+ITER 8000:  loss=1.1561   l1_loss=0.0000  acc=0.0000
+ITER 9000:  loss=1.1660   l1_loss=0.0000  acc=0.0000
+ITER 10000:  loss=1.1743   l1_loss=0.0000  acc=0.0000
+ITER 11000:  loss=1.1798   l1_loss=0.0000  acc=0.0000
+ITER 12000:  loss=1.1711   l1_loss=0.0000  acc=0.0000
+ITER 13000:  loss=1.2005   l1_loss=0.0000  acc=0.0000
+ITER 14000:  loss=1.2100   l1_loss=0.0000  acc=0.0000
+ITER 15000:  loss=1.2145   l1_loss=0.0000  acc=0.0000
+ITER 16000:  loss=1.2197   l1_loss=0.0000  acc=0.0000
+ITER 17000:  loss=1.2230   l1_loss=0.0000  acc=0.0000
+ITER 18000:  loss=1.1812   l1_loss=0.0000  acc=0.0000
+ITER 19000:  loss=1.2226   l1_loss=0.0000  acc=0.0000
+ITER 20000:  loss=1.2252   l1_loss=0.0000  acc=0.0000
+decoder mask depends on  (33280, 81)
+inside singleheadselfatt: inputs are dimension  (33280, 81, 80)

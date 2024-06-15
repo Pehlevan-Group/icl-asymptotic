@@ -15,7 +15,7 @@ trainvals = []
 testvals = []
 
 #mydir='3l20_22143820'
-for i in range(25):
+for i in range(21):
     file_path = f'./{mydir}/pickles/train-{i}-0.pkl'
     with open(file_path, 'rb') as fp:
         loaded = pickle.load(fp)
@@ -26,7 +26,7 @@ for i in range(25):
 # overparam = [i for i in range(len(trainvals)) if trainvals[i] < cutoff]
 # print("Tau Inflection at tau = ",overparam[-1])
 
-taus = np.array([0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,2,2.5,3,5])[:25]
+taus = np.array([0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,2,2.5,3,5])[:21]
 
 # def growth(myarr):
 #     answ = []

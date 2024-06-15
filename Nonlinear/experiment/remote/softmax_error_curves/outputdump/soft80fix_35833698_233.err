@@ -1,0 +1,3 @@
+mkdir: cannot create directory ‘resultsdump/job_soft80fix’: File exists
+mkdir: cannot create directory ‘resultsdump/job_soft80fix/pickles’: File exists
+/var/slurmd/spool/slurmd/job35848370/slurm_script: line 33: 1374638 Bus error               (core dumped) python run.py $newdir 80 $tauind $avgind

@@ -17,7 +17,7 @@ d = int(sys.argv[2])
 tauind = int(sys.argv[3]); # grab value of $SLURM_ARRAY_TASK_ID to index over taus 
 avgind = int(sys.argv[4]); # grab value of $SLURM_ARRAY_TASK_ID to index over experiment repeats 
 tvals = np.array([0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,2,2.5,3,5]); P = int(tvals[tauind]*(d**2)); #np.array([0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,2,2.5,3,5,7,10]); 
-alpha = 0.5; N = int(alpha*d);
+alpha = 1; N = int(alpha*d);
 h = d;
 
 trainobject = LinearRegressionCorrect(n_points = N+1, n_dims= d, eta_scale = sigma, w_scale = psi, batch_size = P, seed=None);

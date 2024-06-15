@@ -1,0 +1,25 @@
+mkdir: cannot create directory ‘resultsdump/job_soft80fix’: File exists
+mkdir: cannot create directory ‘resultsdump/job_soft80fix/pickles’: File exists
+2024-06-14 18:50:02.687789: W external/tsl/tsl/framework/bfc_allocator.cc:296] Allocator (GPU_0_bfc) ran out of memory trying to allocate 961.07MiB with freed_by_count=0. The caller indicates that this is not a failure, but this may mean that there could be performance gains if more memory were available.
+Traceback (most recent call last):
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/softmax_error_curves/run.py", line 36, in <module>
+    logits = state.apply_fn({'params': state.params}, xs); # runs xs through transformer and makes predictions
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/softmax_error_curves/../../../model/transformer.py", line 302, in __call__
+    y = TransformerBlock(
+        ^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/softmax_error_curves/../../../model/transformer.py", line 188, in __call__
+    x = SingleHeadSelfAttention(self.config)(inputs, decoder_mask, idxs=idxs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/softmax_error_curves/../../../model/transformer.py", line 110, in __call__
+    attn_weights = jnp.einsum('...qd,...kd->...qk', query, key)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home05/mletey/.conda/envs/try4/lib/python3.12/site-packages/jax/_src/numpy/lax_numpy.py", line 3494, in einsum
+    return einsum(operands, contractions, precision,  # type: ignore[operator]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home05/mletey/.conda/envs/try4/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+jaxlib.xla_extension.XlaRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 1007750656 bytes.
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.

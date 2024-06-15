@@ -69,6 +69,7 @@ plt.scatter(taus,trainvals,c='black',label='Final Training Error')
 more = [3.407228723517619e-05, 3.0324617910082452e-05, 2.3542552298749797e-05, 2.3064530978444964e-05, 2.7070831492892466e-05, 3.093613850069232e-05, 4.410104884300381e-05, 4.042880027554929e-05, 6.266944546950981e-05, 0.00034977233735844493, 0.02390388213098049, 0.0966218039393425, 0.14506091177463531, 0.15114298462867737, 0.24264347553253174]
 plt.scatter(np.linspace(0.1,2.1,21)[:15],more)
 #plt.axvline(x=tstar,c='red',label=f'tau* = {tstar} (cummulative sum w threshold {threshold})')
+plt.xlim(0.9,1.1)
 plt.legend()
 plt.title(f'Train Error Transition - d = {myd}')
 plt.savefig(f'{mydir}/1L-transition-{myd}.png')

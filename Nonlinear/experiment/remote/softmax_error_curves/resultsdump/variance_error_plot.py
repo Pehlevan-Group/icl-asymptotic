@@ -21,7 +21,7 @@ def find_closest_index(arr, target):
             closest_index = i
     return closest_index
 
-taus_so_far = 24
+taus_so_far = 25
 taus = np.array([0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,2,2.5,3,5,7,10])[:taus_so_far]
 num_iters = 5
 
@@ -61,6 +61,6 @@ for tauindex in range(taus_so_far):
 plt.plot(taus, np.mean(plotvals,axis=1),label='variance matching')
 plt.plot(taus, np.mean(plotvals_orig,axis=1),label='fixed gradient steps')
 plt.legend()
-plt.savefig("pleasework.png")
+plt.savefig(f'{mydir}/pleasework.png')
 
 

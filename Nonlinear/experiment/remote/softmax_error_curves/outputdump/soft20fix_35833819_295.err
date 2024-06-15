@@ -1,0 +1,2 @@
+mkdir: cannot create directory ‘resultsdump/job_soft20fix’: File exists
+mkdir: cannot create directory ‘resultsdump/job_soft20fix/pickles’: File exists
