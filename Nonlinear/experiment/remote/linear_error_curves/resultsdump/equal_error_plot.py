@@ -85,18 +85,22 @@ plt.gca().spines['top'].set_color('lightgray')
 plt.gca().spines['right'].set_color('lightgray')
 plt.gca().spines['bottom'].set_color('lightgray')
 plt.gca().spines['left'].set_color('lightgray')
+print([a for a in taus])
 for i in range(len(dirs)):
-    plt.plot(taus,np.mean(total_data[i,:,:], axis = 1),'-',color=colors[i],label = f'{names[i]}')
-    plt.fill_between(taus,np.mean(total_data[i,:,:], axis = 1)-np.std(total_data[i,:,:], axis = 1),np.mean(total_data[i,:,:], axis = 1)+np.std(total_data[i,:,:], axis = 1),alpha=0.2,color=colors[i])
-    # plt.plot(taus,np.mean(total_data_1[i,:,:], axis = 1),label = f'unmodified {dirs[i]}')
-    # plt.fill_between(taus,np.mean(total_data_1[i,:,:], axis = 1)-np.std(total_data_1[i,:,:], axis = 1),np.mean(total_data_1[i,:,:], axis = 1)+np.std(total_data_1[i,:,:], axis = 1),alpha=0.2)
+    print(names[i])
+    print([a for a in np.mean(total_data[i,:,:], axis = 1)])
+    print([a for a in np.std(total_data[i,:,:], axis = 1)])
+    # plt.plot(taus,np.mean(total_data[i,:,:], axis = 1),'-',color=colors[i],label = f'{names[i]}')
+    # plt.fill_between(taus,np.mean(total_data[i,:,:], axis = 1)-np.std(total_data[i,:,:], axis = 1),np.mean(total_data[i,:,:], axis = 1)+np.std(total_data[i,:,:], axis = 1),alpha=0.2,color=colors[i])
+    # # plt.plot(taus,np.mean(total_data_1[i,:,:], axis = 1),label = f'unmodified {dirs[i]}')
+    # # plt.fill_between(taus,np.mean(total_data_1[i,:,:], axis = 1)-np.std(total_data_1[i,:,:], axis = 1),np.mean(total_data_1[i,:,:], axis = 1)+np.std(total_data_1[i,:,:], axis = 1),alpha=0.2)
 
-# Nice legend
-leg = plt.legend()
-leg.get_frame().set_alpha(0)
-# Axis Formatting
-plt.xlabel(r'$\tau = n/d^2$')
-plt.ylabel(r'$e^{ICL}(\Gamma^*)$')
-plt.xticks(fontsize=20);
-plt.yticks(fontsize=20);
-plt.savefig("icl_dd_full_linear.pdf", bbox_inches='tight')
+# # Nice legend
+# leg = plt.legend()
+# leg.get_frame().set_alpha(0)
+# # Axis Formatting
+# plt.xlabel(r'$\tau = n/d^2$')
+# plt.ylabel(r'$e^{ICL}(\Gamma^*)$')
+# plt.xticks(fontsize=20);
+# plt.yticks(fontsize=20);
+# plt.savefig("icl_dd_full_linear.pdf", bbox_inches='tight')

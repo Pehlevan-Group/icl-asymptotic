@@ -16,7 +16,9 @@ myname = sys.argv[1] # grab value of $mydir to add results
 d = int(sys.argv[2])
 tauind = int(sys.argv[3]); # grab value of $SLURM_ARRAY_TASK_ID to index over taus 
 avgind = int(sys.argv[4]); # grab value of $SLURM_ARRAY_TASK_ID to index over experiment repeats 
-tvals = [7,8.5,9,9.5,10]
+tvals = np.array([6.25, 6.5, 6.75, 7.25, 7.5, 7.75, 8.25, 8.5, 8.75, 9.25, 9.5, 9.75, 10.5, 11, 11.5, 12, 13, 14, 15])
+#np.array([6.75, 7.25, 7.5, 7.75, 8, 8.25, 8.75, 9.25, 9.75, 10.5, 11, 11.5, 12, 13, 14, 15])
+#[6.25, 6.5, 6.75, 7.25, 7.5, 7.75, 8.25, 8.5, 8.75, 9.25, 9.5, 9.75, 10.5, 11, 11.5, 12, 13, 14, 15]
 #np.linspace(0.5,6.5,61); 
 P = int(tvals[tauind]*(d**2));
 #np.array([2.6,2.7,2.8,2.9,3.25,3.75,4.25,4.75,6,7,8,10]); 

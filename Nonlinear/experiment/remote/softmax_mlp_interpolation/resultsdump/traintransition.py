@@ -15,7 +15,7 @@ trainvals = []
 testvals = []
 
 #mydir='3l20_22143820'
-for i in range(41):
+for i in range(21):
     file_path = f'./{mydir}/pickles/train-{i}.pkl'
     with open(file_path, 'rb') as fp:
         loaded = pickle.load(fp)
@@ -26,7 +26,7 @@ for i in range(41):
 # overparam = [i for i in range(len(trainvals)) if trainvals[i] < cutoff]
 # print("Tau Inflection at tau = ",overparam[-1])
 
-taus = np.linspace(1.5,5.5,41) #np.linspace(2.5,4.5,21) #np.linspace(0.1,2.1,21)
+taus = np.linspace(2.5,4.5,21) #np.linspace(2.5,4.5,21) #np.linspace(0.1,2.1,21)
 trainvals = np.array(trainvals)
 myarr = np.array(trainvals[0]/trainvals)
 # sums = [np.sum(myarr[0:i+1]) for i in range(len(myarr))]
@@ -34,7 +34,7 @@ myarr = np.array(trainvals[0]/trainvals)
 # tind = np.where(sums > myval)[0][0]
 # tstar = taus[tind]
 # print("tstar",tstar)
-plt.scatter(taus,myarr,c='black',label='Final Training Error')
+plt.scatter(taus,trainvals,c='black',label='Final Training Error')
 #plt.axvline(x=tstar,c='red',label=f'tau* = {tstar} (cummulative sum w threshold {threshold})')
 plt.legend()
 plt.title(f'Train Error Transition - d = {myd}')

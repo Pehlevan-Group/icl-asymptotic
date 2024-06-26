@@ -1,9 +1,0 @@
-/var/slurmd/spool/slurmd/job35793385/slurm_script: command substitution: line 24: syntax error near unexpected token `%'
-/var/slurmd/spool/slurmd/job35793385/slurm_script: command substitution: line 24: `( ($1 - 1) % 5 )+5'
-mkdir: cannot create directory ‘resultsdump/job_soft20’: File exists
-mkdir: cannot create directory ‘resultsdump/job_soft20/pickles’: File exists
-Traceback (most recent call last):
-  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/softmax_error_curves/run.py", line 18, in <module>
-    avgind = int(sys.argv[4]); # grab value of $SLURM_ARRAY_TASK_ID to index over experiment repeats 
-                 ~~~~~~~~^^^
-IndexError: list index out of range
