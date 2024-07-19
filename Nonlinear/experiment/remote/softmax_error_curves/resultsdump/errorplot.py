@@ -6,18 +6,18 @@ import seaborn as sns
 mydir = sys.argv[1]
 d = int(sys.argv[2])
 experimentdata = []
-for i in range(26):
+for i in range(61):
     file_path = f'./{mydir}/error-{i}.txt'
     # Read the numbers from the file and convert them to floats
     with open(file_path, 'r') as file:
         numbers = [float(line.strip()) for line in file if line.strip()]
     experimentdata.append(numbers)
-for i in range(39,61):
-    file_path = f'./{mydir}/error-{i}.txt'
-    # Read the numbers from the file and convert them to floats
-    with open(file_path, 'r') as file:
-        numbers = [float(line.strip()) for line in file if line.strip()]
-    experimentdata.append(numbers)
+# for i in range(39,61):
+#     file_path = f'./{mydir}/error-{i}.txt'
+#     # Read the numbers from the file and convert them to floats
+#     with open(file_path, 'r') as file:
+#         numbers = [float(line.strip()) for line in file if line.strip()]
+#     experimentdata.append(numbers)
 
 #print([list(i) for i in experimentdata])
 # taus = np.array([0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,2,2.5,3,5,7,10])[:14]
@@ -32,6 +32,8 @@ stds20 = np.array([0.41806787795849654, 0.2875931424416803, 0.29112605790138474,
 taus40 = np.array(list(np.linspace(0.1,3.1,31)) + list(np.linspace(3.5,6,6)))
 means40 = np.array([2.4191471576690673, 2.425160598754883, 2.674203562736511, 2.9663349390029907, 3.0356257438659666, 3.245623826980591, 3.242140460014343, 3.454966592788696, 3.434406876564026, 3.466624045372009, 3.465603470802307, 3.5059128522872927, 3.5122638463974, 3.4614670276641846, 3.4320006132125855, 3.504262328147888, 3.2266785383224486, 3.1504889845848085, 3.02805700302124, 2.8070466041564943, 2.702122378349304, 2.6171469688415527, 2.6421570777893066, 2.5429049015045164, 2.592008900642395, 2.3735329508781433, 2.3218040347099302, 2.252646732330322, 2.1769005060195923, 2.211198878288269, 2.0822319626808166, 1.9879287481307983, 1.7545288920402526, 1.7532029747962952, 1.6462490200996398, 1.6515514850616455, 1.5976331233978271])
 stds40 = np.array([0.1980926500038131, 0.20449686367722375, 0.18292504079883073, 0.2431057901652885, 0.2950867583117192, 0.2743911316263266, 0.18640468719236383, 0.25621205497548843, 0.24460734915457355, 0.266715899197402, 0.2610317458567666, 0.16407914684468491, 0.5257478036378022, 0.5034907047215612, 0.4211540137492861, 0.6685259717806221, 0.52481966445869, 0.5748756433403315, 0.3432755821104918, 0.45730634342592097, 0.3059751311815258, 0.252934526425411, 0.20690333432799626, 0.18409856787073145, 0.2144693829597512, 0.2897205477272905, 0.24045752628840483, 0.15458372330180664, 0.20611640530571407, 0.12438685611650864, 0.16284982108651486, 0.13083253501527553, 0.18006048284527343, 0.1328266052898653, 0.12096439217896506, 0.0446358800497573, 0.06967471542404237])
+#80
+taus80 = np.linspace(0.1,6.1,61);
 
 inds = list(range(26))+list(range(39,61))
 taus = np.linspace(0.1,6.1,61)[inds]
@@ -61,6 +63,9 @@ plt.axvline(x=1.4,linestyle=':',linewidth=4,color=myred)
 plt.plot(taus40,means40,label=f'd = 40',color=color_cycle[1])
 plt.fill_between(taus40,means40-stds40,means40+stds40,alpha=0.2,color=color_cycle[1])
 plt.axvline(x=1.6,linestyle=':',linewidth=4, color=color_cycle[1])
+plt.plot(taus80,means,label=f'd = {d}',color=color_cycle[2])
+plt.fill_between(taus80,means-stds,means+stds,alpha=0.2,color=color_cycle[2])
+plt.axvline(x=1,linestyle=':',linewidth=4, color=color_cycle[2])
 #plt.plot(taus,means,label=f'd = {d}',color=color_cycle[2])
 #plt.fill_between(taus,means-stds,means+stds,alpha=0.2,color=color_cycle[2])
 # Nice legend
@@ -71,4 +76,4 @@ plt.xlabel(r'$\tau = n/d^2$')
 plt.ylabel(r'$e^{ICL}(\Gamma^*)$')
 plt.xticks(fontsize=20);
 plt.yticks(fontsize=20);
-plt.savefig("icl_dd_softmax.pdf", bbox_inches='tight')
+plt.savefig("icl_dd_softmax.png", bbox_inches='tight')
