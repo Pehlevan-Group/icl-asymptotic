@@ -67,9 +67,7 @@ def sinusoidal_init(max_len=100,
         """Sinusoidal init."""
         del key, dtype
         d_feature = shape[-1]
-        #print("sininit: allocating", max_len, d_feature)
         pe = np.zeros((max_len, d_feature), dtype=np.float32)
-        #print("sininit: allocation worked")
         position = np.arange(0, max_len)[:, np.newaxis]
         scale_factor = -np.log(max_scale / min_scale) / (d_feature // 2 - 1)
         div_term = min_scale * np.exp(np.arange(0, d_feature // 2) * scale_factor)
@@ -100,7 +98,6 @@ class SingleHeadSelfAttention(nn.Module):
             features=self.config.n_hidden,
             use_bias=use_bias)
         
-        print("inside singleheadselfatt: inputs are dimension ", inputs.shape)
         self.sow('intermediates', 'inputs', inputs)
         query = dense(name='query')(inputs)
         key = dense(name='key')(inputs)
@@ -121,7 +118,6 @@ class SingleHeadSelfAttention(nn.Module):
             # value = jax.nn.softmax(value)
 
         attn_out = attn_weights @ value
-        print("shape of attention is ",attn_out.shape)
         return attn_out
 
 
@@ -173,10 +169,6 @@ class TransformerBlock(nn.Module):
     config: TransformerConfig
 
     devices = jax.devices()
-    if any(device.device_kind == 'gpu' for device in devices):
-        print("TB is running on a GPU.")
-    else:
-        print("TB is not running on a GPU.")
 
     @nn.compact
     def __call__(self,
@@ -186,9 +178,7 @@ class TransformerBlock(nn.Module):
 
         assert inputs.ndim == 3
         x = SingleHeadSelfAttention(self.config)(inputs, decoder_mask, idxs=idxs)
-        #x = nn.MultiHeadDotProductAttention(num_heads=self.config.n_heads,qkv_features=self.config.n_hidden)(inputs_q=inputs, inputs_kv=inputs, mask=decoder_mask)
-        print("residual connection is adding inputs of shape ",inputs.shape," to x of shape ",x.shape)
-        x = x + inputs
+        #x = nn.MultiHeadDotProductAttention(num_heads=self.config.n_heads,qkv_features=self.config.n_hidden)(inputs_q=inputs, inputs_kv=inputs, mask=decoder_mask)        x = x + inputs
         pre_mlp_x = nn.LayerNorm()(x)
 
         for i in range(self.config.n_mlp_layers):
@@ -220,9 +210,6 @@ class LinearSelfAttentionBlock(nn.Module):
 
         attn_weights = jnp.einsum('...qd,...kd->...qk', query, key)
         attn_weights /= jnp.sqrt(depth) #this could be a problem, this will be h not d so perhaps wrong rescaling??
-        print("shapes are", query.shape,key.shape,value.shape)
-        print("attention weight matrix has shape", attn_weights.shape)
-        print("inputs have shape", inputs.shape)
         
         attn_out = attn_weights @ value
         return attn_out
@@ -295,7 +282,6 @@ class Transformer(nn.Module):
             # decoder_mask = nn.combine_masks(
             #     decoder_mask,
             #     nn.make_causal_mask(inputs))
-            print("decoder mask depends on ",inputs.shape[:2])
             decoder_mask = nn.make_causal_mask(jnp.zeros(inputs.shape[:2]))
             
             for _ in range(config.n_layers):
@@ -310,6 +296,5 @@ class Transformer(nn.Module):
 
             if config.n_out == 1:
                 logits = logits.flatten()
-        #print("shape is", logits.shape)
         return logits
 

@@ -15,7 +15,7 @@ trainvals = []
 testvals = []
 
 #mydir='3l20_22143820'
-for i in range(30):
+for i in range(61,119):
     file_path = f'./{mydir}/pickles/train-{i}-0.pkl'
     with open(file_path, 'rb') as fp:
         loaded = pickle.load(fp)
@@ -26,11 +26,13 @@ for i in range(30):
 # overparam = [i for i in range(len(trainvals)) if trainvals[i] < cutoff]
 # print("Tau Inflection at tau = ",overparam[-1])
 
-tausextra = np.array([2.6,2.7,2.8,2.9,3.25,3.75,4.25,4.75,6,7,8,10])
-taus = np.array([0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,1.75,2,2.25,2.5,3,3.5,4,4.5,5])
+# tausextra = np.array([2.6,2.7,2.8,2.9,3.25,3.75,4.25,4.75,6,7,8,10])
+# taus = np.array([0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,1.75,2,2.25,2.5,3,3.5,4,4.5,5])
 #np.linspace(0.1,6.1,61)
 #taus1 = np.array([0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,1.75,2,2.25,2.5,3,3.5,4,4.5,5])
-
+tvals = np.array([0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.75, 2.0, 2.25, 2.5, 2.6, 2.7, 2.8, 2.9, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 6.0, 6.25, 6.5, 6.75, 7.0, 7.25, 7.5, 7.75, 8.0, 8.25, 8.5, 8.75, 9.25, 9.5, 9.75, 10.0, 10.5, 11.0, 11.5, 12.0, 13.0, 14.0, 15.0])
+inds = [a - 61 for a in range(61,119)]
+taus = tvals[inds]
 
 # def growth(myarr):
 #     answ = []
@@ -71,9 +73,9 @@ print(trainvals)
 # tind = np.where(sums > myval)[0][0]
 # tstar = taus[tind]
 # print("tstar",tstar)
-plt.scatter(taus,myarr,c='black',label='Final Training Error')
-plt.scatter(tausextra,myarr2,label='ugh')
+plt.scatter(taus[:20],myarr[:20],c='black',label='Final Training Error')
+# plt.scatter(tausextra,myarr2,label='ugh')
 #plt.axvline(x=tstar,c='red',label=f'tau* = {tstar} (cummulative sum w threshold {threshold})')
 plt.legend()
 plt.title(f'Train Error Transition - d = {myd}')
-plt.savefig(f'{mydir}/1L-transition-{myd}.png')
+plt.savefig(f'{mydir}/2L-transition-{myd}.png')

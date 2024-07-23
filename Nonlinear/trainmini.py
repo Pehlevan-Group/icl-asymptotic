@@ -38,11 +38,6 @@ class TrainState(train_state.TrainState):
 
 
 def create_train_state(rng, model, dummy_input, lr=1e-4, optim=optax.adamw, **opt_kwargs):
-    devices = jax.devices()
-    if any(device.device_kind == 'gpu' for device in devices):
-        print("create_train_state is running on a GPU.")
-    else:
-        print("create_train_state is not running on a GPU.")
     params = model.init(rng, dummy_input)['params']
     #print("creattrainstate: model init works")
     tx = optim(learning_rate=lr, **opt_kwargs)
