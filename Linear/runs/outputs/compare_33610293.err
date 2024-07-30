@@ -1,5 +1,0 @@
-Traceback (most recent call last):
-  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Linear/Fig3_Mem_ICL_Transition_Task_Diversity/compare.py", line 8, in <module>
-    ICL = np.zeros(len(alphas),2,len(kappas)); IDG = np.zeros(len(alphas),2,len(kappas));
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: Cannot interpret '2' as a data type

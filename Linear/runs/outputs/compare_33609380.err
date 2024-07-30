@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Linear/Fig3_Mem_ICL_Transition_Task_Diversity/compare.py", line 2, in <module>
-    from bayes_estimator.py import *
-ModuleNotFoundError: No module named 'bayes_estimator.py'; 'bayes_estimator' is not a package

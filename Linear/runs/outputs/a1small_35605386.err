@@ -1,5 +1,0 @@
-Traceback (most recent call last):
-  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Linear/Fig1_Linear_Double_Descent/smalltau.py", line 43, in <module>
-    H_Z = construct_H_Z(x, y, l, d)
-          ^^^^^^^^^^^^^
-NameError: name 'construct_H_Z' is not defined. Did you mean: 'construct_H_NEW'?

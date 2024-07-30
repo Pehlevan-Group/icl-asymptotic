@@ -6,13 +6,12 @@ import seaborn as sns
 mydir = sys.argv[1]
 d = int(sys.argv[2])
 experimentdata = []
-for i in range(61,100):
+for i in range(61,119):
     file_path = f'./{mydir}/error-{i}.txt'
     # Read the numbers from the file and convert them to floats
     with open(file_path, 'r') as file:
         numbers = [float(line.strip()) for line in file if line.strip()]
     experimentdata.append(numbers)
-
 
 #experimentdata = np.array(experimentdata)
 #print([list(i) for i in experimentdata])
@@ -36,11 +35,12 @@ test20t = np.array([0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, 
 means = np.array([np.mean(experimentdata[i]) for i in range(len(experimentdata))])
 stds = np.array([np.std(experimentdata[i]) for i in range(len(experimentdata))])
 tvals = np.array([0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.75, 2.0, 2.25, 2.5, 2.6, 2.7, 2.8, 2.9, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 6.0, 6.25, 6.5, 6.75, 7.0, 7.25, 7.5, 7.75, 8.0, 8.25, 8.5, 8.75, 9.25, 9.5, 9.75, 10.0, 10.5, 11.0, 11.5, 12.0, 13.0, 14.0, 15.0])
-inds = [a - 61 for a in range(61,100)]
+inds = [a - 61 for a in range(61,119)]
 taus = tvals[inds]
+print([a for a in taus])
 plt.plot(taus,means,label=f'd = {d}')
 plt.fill_between(taus, means-stds, means+stds, alpha = 0.2)
-plt.plot(test20t,test20m,label='d = 20')
+# plt.plot(test20t,test20m,label='d = 20')
 plt.legend()
 plt.savefig(f'{mydir}/plot{d}', bbox_inches='tight')
 

@@ -2,17 +2,15 @@ import numpy as np
 import sys
 from common import *
 
-d = sys.argv[1]
-alpha = sys.argv[2]
-d = int(d)
-alpha = float(alpha)
+d = sys.argv[1]; d = int(d)
+alpha = sys.argv[2]; alpha = float(alpha)
 
 sigma_noise = 0.1; sigma_beta = 1; rho = (sigma_noise/sigma_beta)**2
-lam = 0.00000001
+lam = 0.1
 kappa = 0.5; K = np.int64(kappa * d)
 
 numavg = 10;
-tau_values = [0.2, 0.5, 0.85] #[1.2,1.5,2]
+tau_values = [0.2, 0.5, 0.85, 1.15, 1.5, 2]
 icl_sim_ary = []; idg_sim_ary = []
 
 print("d ", d)
