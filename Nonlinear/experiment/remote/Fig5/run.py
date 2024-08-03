@@ -12,16 +12,22 @@ from task.regression import LinearRegressionCorrect
 
 sigma = 0.1;
 psi = 1;
-alpha = 5; tau = 10;
+alpha = 1; tau = 10;
 
 myname = sys.argv[1] # grab value of $mydir to add results
 d = int(sys.argv[2])
 N = int(alpha*d); P = int(tau*(d**2));
 
 #Ks20_original = list(range(2,d+1,4)) + list(np.int64(np.logspace(np.log10(d),np.log10(10*d),30)));
-#Ks40 = #list(range(2,d+1,2)) + list(np.int64(np.log(np.logspace(1.5*d,10*d,30)))); 
+Ks80 = list(range(2,d+1,4)) + list(np.int64(np.logspace(np.log10(d),np.log10(5*d),15)))
+Ks40 = list(range(2,d+1,4)) + list(np.int64(np.logspace(np.log10(d),np.log10(10*d),30)))
 Ks20 = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 23, 28, 35, 45, 57, 69, 82, 96, 109, 123, 136, 150, 163, 177, 190, 204, 217, 231, 244, 258, 271, 285, 298, 312, 325, 339, 352, 366, 379, 393, 406, 420, 433, 447, 460];
-Ks = np.array(Ks20);
+if d == 20:
+   Ks = np.array(Ks20);
+if d == 40:
+   Ks = np.array(Ks40);
+if d == 80:
+   Ks = np.array(Ks80);
 
 kappaind = int(sys.argv[3]); # grab value of $SLURM_ARRAY_TASK_ID to index over taus 
 avgind = int(sys.argv[4]); # grab value of $SLURM_ARRAY_TASK_ID to index over experiment repeats 

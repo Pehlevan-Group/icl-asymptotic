@@ -5,13 +5,21 @@ import seaborn as sns
 
 mydir = sys.argv[1]
 d = int(sys.argv[2])
-experimentdata = []
-for i in range(5):
+icl = []
+inds = [a for a in range(8)] + [a for a in range(25,31)]
+for i in inds:
+    file_path = f'./{mydir}/icl-{i}.txt'
+    # Read the numbers from the file and convert them to floats
+    with open(file_path, 'r') as file:
+        numbers = [float(line.strip()) for line in file if line.strip()]
+    icl.append(numbers)
+idg = []
+for i in inds:
     file_path = f'./{mydir}/idg-{i}.txt'
     # Read the numbers from the file and convert them to floats
     with open(file_path, 'r') as file:
         numbers = [float(line.strip()) for line in file if line.strip()]
-    experimentdata.append(numbers)
+    idg.append(numbers)
 
 ## PLOTS !!!!!
 # DEFINE STANDARD FORMATING FOR FIGURES USED THROUGHOUT PAPER
@@ -25,20 +33,33 @@ plt.gca().spines['top'].set_color('lightgray')
 plt.gca().spines['right'].set_color('lightgray')
 plt.gca().spines['bottom'].set_color('lightgray')
 plt.gca().spines['left'].set_color('lightgray')
-print([np.mean(experimentdata[i]) for i in range(len(experimentdata))])
-print([np.std(experimentdata[i]) for i in range(len(experimentdata))])
-means = np.array([np.mean(experimentdata[i]) for i in range(len(experimentdata))]);
-stds = np.array([np.std(experimentdata[i]) for i in range(len(experimentdata))]);
+means_icl = np.array([np.mean(icl[i]) for i in range(len(icl))]);
+stds_icl = np.array([np.std(icl[i]) for i in range(len(icl))]);
+means_idg = np.array([np.mean(idg[i]) for i in range(len(idg))]);
+stds_idg = np.array([np.std(idg[i]) for i in range(len(idg))]);
 
-Ks20 = list(range(2,d+1,2)) + list(np.int64(np.log(np.logspace(1.5*d,10*d,30)))); 
-Ks40 = list(range(2,d+1,4)) + list(np.int64(np.logspace(np.log10(d),np.log10(10*d),30)));
-Kappasfix = [23, 28, 35, 45, 57];
-Ks = np.array(Kappasfix)
+# Ks20 = list(range(2,d+1,2)) + list(np.int64(np.log(np.logspace(1.5*d,10*d,30)))); 
+# Ks40 = list(range(2,d+1,4)) + list(np.int64(np.logspace(np.log10(d),np.log10(10*d),30)));
+# Kappasfix = [23, 28, 35, 45, 57];
+Ks20 = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 23, 28, 35, 45, 57, 69, 82, 96, 109, 123, 136, 150, 163, 177, 190, 204, 217, 231, 244, 258, 271, 285, 298, 312, 325, 339, 352, 366, 379, 393, 406, 420, 433, 447, 460];
+Ks40 = list(range(2,d+1,4)) + list(np.int64(np.logspace(np.log10(d),np.log10(10*d),30)))
+Ks80 = np.array(list(range(2,d+1,4)) + list(np.int64(np.logspace(np.log10(d),np.log10(5*d),15))))
+if d == 80:
+    Ks = np.array(Ks80[inds])
+if d == 40:
+    Ks = np.array(Ks40[:34])
+if d == 20:
+    Ks = np.array(Ks20)
 print([k for k in Ks])
 kappas = Ks/d;
 
-plt.scatter(kappas[1:], means[1:])
-plt.fill_between(kappas[1:], means[1:]-stds[1:], means[1:]+stds[1:],alpha=0.2)
+start = 0
+plt.scatter(kappas[start:], means_icl[start:],label='icl')
+plt.fill_between(kappas[start:], means_icl[start:]-stds_icl[start:], means_icl[start:]+stds_icl[start:],alpha=0.2)
+plt.scatter(kappas[start:], means_idg[start:],label='idg')
+plt.fill_between(kappas[start:], means_idg[start:]-stds_idg[start:], means_idg[start:]+stds_idg[start:],alpha=0.2)
+plt.axvline(1,linestyle=':',color='grey')
+plt.legend()
 plt.xscale('log')
 
 # Nice legend

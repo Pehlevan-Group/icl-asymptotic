@@ -1,0 +1,3 @@
+mkdir: cannot create directory ‘resultsdump/job_40d_1a_10t’: File exists
+mkdir: cannot create directory ‘resultsdump/job_40d_1a_10t/pickles’: File exists
+slurmstepd: error: *** JOB 42083184 ON holygpu8a31105 CANCELLED AT 2024-07-31T16:14:03 ***
