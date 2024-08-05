@@ -6,7 +6,7 @@ import seaborn as sns
 mydir = sys.argv[1]
 d = int(sys.argv[2])
 icl = []
-inds = [a for a in range(8)] + [a for a in range(25,31)]
+inds = range(35) #[a for a in range(13)] + [a for a in range(25,34)]
 for i in inds:
     file_path = f'./{mydir}/icl-{i}.txt'
     # Read the numbers from the file and convert them to floats
@@ -37,7 +37,10 @@ means_icl = np.array([np.mean(icl[i]) for i in range(len(icl))]);
 stds_icl = np.array([np.std(icl[i]) for i in range(len(icl))]);
 means_idg = np.array([np.mean(idg[i]) for i in range(len(idg))]);
 stds_idg = np.array([np.std(idg[i]) for i in range(len(idg))]);
-
+print(list(means_icl))
+print(list(means_idg))
+print(list(stds_icl))
+print(list(stds_idg))
 # Ks20 = list(range(2,d+1,2)) + list(np.int64(np.log(np.logspace(1.5*d,10*d,30)))); 
 # Ks40 = list(range(2,d+1,4)) + list(np.int64(np.logspace(np.log10(d),np.log10(10*d),30)));
 # Kappasfix = [23, 28, 35, 45, 57];

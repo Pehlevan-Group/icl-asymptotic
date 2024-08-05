@@ -178,17 +178,18 @@ class TransformerBlock(nn.Module):
 
         assert inputs.ndim == 3
         x = SingleHeadSelfAttention(self.config)(inputs, decoder_mask, idxs=idxs)
-        #x = nn.MultiHeadDotProductAttention(num_heads=self.config.n_heads,qkv_features=self.config.n_hidden)(inputs_q=inputs, inputs_kv=inputs, mask=decoder_mask)        x = x + inputs
-        pre_mlp_x = nn.LayerNorm()(x)
+        #x = nn.MultiHeadDotProductAttention(num_heads=self.config.n_heads,qkv_features=self.config.n_hidden)(inputs_q=inputs, inputs_kv=inputs, mask=decoder_mask)        
+        x = x + inputs;
+        # pre_mlp_x = nn.LayerNorm()(x)
 
-        for i in range(self.config.n_mlp_layers):
-            if i == 0:
-                x = nn.Dense(features=self.config.n_hidden)(pre_mlp_x)
-            else:
-                x = nn.gelu(x)
-                x = nn.Dense(features=self.config.n_hidden)(x)
+        # for i in range(self.config.n_mlp_layers):
+        #     if i == 0:
+        #         x = nn.Dense(features=self.config.n_hidden)(pre_mlp_x)
+        #     else:
+        #         x = nn.gelu(x)
+        #         x = nn.Dense(features=self.config.n_hidden)(x)
         
-        x = x + pre_mlp_x
+        # x = x + pre_mlp_x
         x = nn.LayerNorm()(x)
 
         return x
