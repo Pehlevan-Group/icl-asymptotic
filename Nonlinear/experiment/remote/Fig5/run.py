@@ -40,7 +40,7 @@ h = d;
 trainobject = FiniteSampler(n_points = N+1, n_dims= d, eta_scale = sigma, w_scale = psi, diversity=K, batch_size = P, seed=None);
 config = TransformerConfig(pos_emb=False, n_hidden=h, n_layers=2, n_mlp_layers=1, pure_linear_self_att=False)
 print("start training")
-state, hist = train(config, data_iter=iter(trainobject), loss='mse', batch_size=int(0.1*P), test_every=1000, train_iters=20000, optim=optax.adamw,lr=1e-4)
+state, hist = train(config, data_iter=iter(trainobject), loss='mse', batch_size=int(0.1*P), test_every=1000, train_iters=5000, optim=optax.adamw,lr=1e-4)
 
 testobject = LinearRegressionCorrect(n_points = N+1, n_dims= d, eta_scale = sigma, w_scale = psi, batch_size = P, seed=None);
 avgerr = 0;

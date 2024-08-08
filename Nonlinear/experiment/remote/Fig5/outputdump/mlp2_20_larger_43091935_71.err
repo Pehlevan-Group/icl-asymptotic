@@ -1,0 +1,2 @@
+mkdir: cannot create directory ‘resultsdump/job_mlp2_20_larger’: File exists
+mkdir: cannot create directory ‘resultsdump/job_mlp2_20_larger/pickles’: File exists

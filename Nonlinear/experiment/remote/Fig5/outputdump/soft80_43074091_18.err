@@ -1,0 +1,3 @@
+mkdir: cannot create directory ‘resultsdump/job_soft80’: File exists
+mkdir: cannot create directory ‘resultsdump/job_soft80/pickles’: File exists
+slurmstepd: error: *** JOB 43074998 ON holygpu8a29305 CANCELLED AT 2024-08-08T14:06:02 DUE TO TIME LIMIT ***

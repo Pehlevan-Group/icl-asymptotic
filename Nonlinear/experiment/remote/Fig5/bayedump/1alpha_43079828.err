@@ -1,0 +1,12 @@
+mkdir: cannot create directory ‘bayedump/job_1alpha’: File exists
+mkdir: cannot create directory ‘bayedump/job_1alpha’: File exists
+Traceback (most recent call last):
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/Fig5/finitebayesrun.py", line 31, in <module>
+    K = K_array[ind]
+        ~~~~~~~^^^^^
+IndexError: index 39 is out of bounds for axis 0 with size 30
+Traceback (most recent call last):
+  File "/n/holyscratch01/pehlevan_lab/Lab/mletey/icl-asymptotic/Nonlinear/experiment/remote/Fig5/finitebayesrun.py", line 31, in <module>
+    K = K_array[ind]
+        ~~~~~~~^^^^^
+IndexError: index 38 is out of bounds for axis 0 with size 30
