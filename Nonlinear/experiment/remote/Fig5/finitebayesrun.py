@@ -22,7 +22,7 @@ e_B_finite_ary = np.zeros(nsim)
 # K_ary = np.int64(d * np.logspace(-1, 2, 5))
 # K_ary = np.int64(np.logspace(np.log10(2), np.log10(100*d), 6))
 #kappa_ary = np.logspace(np.log10(0.01),np.log10(250),50); K = np.int64(kappa_ary*d);
-K_array = list(np.int64(np.logspace(np.log10(0.01*d),np.log10(10*d),50))); #list(np.int64(np.logspace(np.log10(0.05*d),np.log10(500*d),40))); 
+K_array = list(np.int64(np.logspace(np.log10(0.01*d),np.log10(10*d),20))); #list(np.int64(np.logspace(np.log10(0.05*d),np.log10(500*d),40))); 
 K_array = [i for n, i in enumerate(K_array) if i not in K_array[:n]]
 K_array = np.array(K_array)
 kappa_ary = K_array/d;
