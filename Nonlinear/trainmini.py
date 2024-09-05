@@ -143,7 +143,7 @@ def get_random_batch(data, batch_size):
 def train(config, data_iter, batch_size, 
           test_iter=None, 
           loss='ce', 
-          train_iters=10_000, test_iters=100, test_every=1_000, 
+          train_iters=10_000, test_iters=1000, test_every=1_000, 
           early_stop_n=None, early_stop_key='loss', early_stop_decision='min',
           optim=optax.adamw,
           seed=None, 
@@ -154,7 +154,9 @@ def train(config, data_iter, batch_size,
     
     if test_iter is None:
         test_iter = data_iter
-    
+
+    idg_iter = data_iter
+
     init_rng = jax.random.key(seed)
     model = config.to_model()
 
@@ -164,7 +166,8 @@ def train(config, data_iter, batch_size,
 
     hist = {
         'train': [],
-        'test': []
+        'test': [],
+        'true_test': []
     }
 
     # sample from data class, this sample will be the only one used during training
@@ -182,11 +185,15 @@ def train(config, data_iter, batch_size,
             state = state.replace(metrics=Metrics.empty()) 
             
             test_state = state
-            for _, test_batch in zip(range(test_iters), test_iter):
+            for _, test_batch in zip(range(test_iters), idg_iter):
                 test_state = compute_metrics(test_state, test_batch, loss=loss)
-            
             hist['test'].append(test_state.metrics)
             
+            test_state = state
+            for _, test_batch in zip(range(test_iters), test_iter):
+                test_state = compute_metrics(test_state, test_batch, loss=loss)
+            hist['true_test'].append(test_state.metrics)
+
             _print_status(step+1, hist)
             if early_stop_n is not None and len(hist['train']) > early_stop_n:
                 last_n_metrics = np.array([getattr(m, early_stop_key) for m in hist['train'][-early_stop_n - 1:]])
