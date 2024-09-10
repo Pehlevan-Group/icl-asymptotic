@@ -46,8 +46,9 @@ class LinearRegressionCorrect:
 # We introduce a new parameter here as well
 # diversity: K = number of distinct beta_k to be sampled UNIFORMLY for each context 
 class FiniteSampler:
-    def __init__(self, n_points=6, n_dims=2, eta_scale=1, w_scale=1, diversity=6, batch_size=128, seed=None) -> None:
+    def __init__(self, n_points=6, variable_context=False, n_dims=2, eta_scale=1, w_scale=1, diversity=6, batch_size=128, seed=None) -> None:
         self.n_points = n_points # n_points = N+1 where N = context length, as n_points includes the (N+1)st query vector
+        self.variable_context = variable_context
         self.n_dims = n_dims # d = dimension of tokens
         self.w_scale = w_scale # sigma_beta
         self.eta_scale = eta_scale # noise sigma
@@ -59,22 +60,27 @@ class FiniteSampler:
         self.E = self.rng.normal(loc=0, scale = self.w_scale, size=(self.n_dims, self.diversity)) 
     
     def __next__(self):
+        if self.variable_context:
+            context_length = int(random.uniform(self.n_points-int(self.n_points/2), self.n_points+int(self.n_points/2)))
+        else:
+            context_length = self.n_points
         uniform_ps = np.array([random.randrange(self.diversity) for _ in range(self.batch_size)])
         ws = np.array([self.E[:,uniform_ps[i]] for i in range(len(uniform_ps))]) 
         ws = ws[:,:,np.newaxis] # batch_size x n_dims x 1 as before
         print("ws are ", ws.shape)
-        xs = self.rng.normal(loc=0, scale = 1/np.sqrt(self.n_dims), size=(self.batch_size, self.n_points, self.n_dims))
+        xs = self.rng.normal(loc=0, scale = 1/np.sqrt(self.n_dims), size=(self.batch_size, context_length, self.n_dims))
         print("xs are ", xs.shape)
-        ys = xs @ ws + self.rng.normal(loc=0, scale = self.eta_scale, size=(self.batch_size, self.n_points, 1))
-        Z = np.zeros((self.batch_size, self.n_points, self.n_dims + 1))
+        ys = xs @ ws + self.rng.normal(loc=0, scale = self.eta_scale, size=(self.batch_size, context_length, 1))
+        Z = np.zeros((self.batch_size, context_length, self.n_dims + 1))
         Z[:,:,0:self.n_dims] = xs
         Z[:,:,-1] = ys.squeeze()
         Z[:,-1, self.n_dims] = 0 # padding for final context
-	# returns the Z [x,y,x,y]... configuration and the true N+1 value for testing 
+    # returns the Z [x,y,x,y]... configuration and the true N+1 value for testing 
         return Z, ys[:,-1].squeeze()
 
     def __iter__(self):
         return self
+
 
 # if __name__ == '__main__':
 #     import matplotlib.pyplot as plt

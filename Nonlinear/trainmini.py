@@ -141,6 +141,7 @@ def get_random_batch(data, batch_size):
     return xs[indices],ys[indices]
 
 def train(config, data_iter, batch_size, 
+          idg_iter=None,
           test_iter=None, 
           loss='ce', 
           train_iters=10_000, test_iters=1000, test_every=1_000, 
@@ -154,8 +155,8 @@ def train(config, data_iter, batch_size,
     
     if test_iter is None:
         test_iter = data_iter
-
-    idg_iter = data_iter
+    if idg_iter is None:
+        idg_iter = data_iter
 
     init_rng = jax.random.key(seed)
     model = config.to_model()
